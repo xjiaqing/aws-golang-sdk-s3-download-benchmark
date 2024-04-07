@@ -9,6 +9,11 @@ go run main.go --cpc <concurrency per vCPU>
 - Region: us-west-2
 - Instance Type: [c6in.8xlarge](https://aws.amazon.com/cn/ec2/instance-types/)
 
+### Instance Type
+| Instance Type | vCPUs | Memory | Bandwidth |
+|:-------------:|:-----:|:------:|:---------:|
+| [c6in.8xlarge](https://aws.amazon.com/cn/ec2/instance-types/) | 32 | 64G |  50Gbps |
+
 ### Test Result
 
 #### Partition Size: 64G
