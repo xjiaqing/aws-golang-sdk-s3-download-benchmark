@@ -1,3 +1,9 @@
+### Run
+```
+go run main.go --cpc <concurrency per vCPU>
+```
+
+
 ### Environment
 
 - Region: us-west-2
