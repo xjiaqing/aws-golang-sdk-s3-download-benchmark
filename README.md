@@ -7,7 +7,6 @@ go run main.go --cpc <concurrency per vCPU>
 ### Environment
 
 - Region: us-west-2
-- Instance Type: [c6in.8xlarge](https://aws.amazon.com/cn/ec2/instance-types/)
 
 ### Instance Type
 | Instance Type | vCPUs | Memory | Bandwidth |
