@@ -1,6 +1,8 @@
 ### Run
 ```
-go run main.go --cpc <concurrency per vCPU>
+go run main.go --cpc <concurrency per vCPU> --key <download file key> --bucket <download file bucket> --region <s3 bucket region code>
+    --cpc default 1
+    --region default us-west-2
 ```
 
 
@@ -15,7 +17,7 @@ go run main.go --cpc <concurrency per vCPU>
 
 ### Test Result
 
-#### Partition Size: 64G
+#### Partition Size: 64M
 | concurrency	| concurrency per vCPU |	cost time (seconds) |	bandwidth (Gbps) |
 |:----:|:------:|:---------:|:-----:|
 | 64   |    2	| 122.07736	| 33.55 |

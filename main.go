@@ -13,14 +13,22 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
 
-var concurrencyPerCPU = flag.Int("cpc", 1, "concurrency per cpu")
-var numCpu = runtime.NumCPU()
-
 func main() {
 
+	var concurrencyPerCPU int
+	var downloadKey, downloadBucket, region string
+	flag.IntVar(&concurrencyPerCPU, "cpc", 1, "concurrency per cpu")
+	flag.StringVar(&downloadKey, "key", "", "key of download s3 file")
+	flag.StringVar(&downloadBucket, "bucket", "", "bucket of download s3 file")
+	flag.StringVar(&region, "region", "us-west-2", "aws s3 bucket region code, default: us-west-2")
 	flag.Parse()
 
-	downloadConcurrrency := numCpu * *concurrencyPerCPU
+	if downloadKey == "" || downloadBucket == "" {
+		fmt.Println("--key and --bucket must be specified")
+		os.Exit(1)
+	}
+
+	downloadConcurrrency := runtime.NumCPU() * concurrencyPerCPU
 	sess := session.Must(session.NewSession(&aws.Config{Region: aws.String("us-west-2")}))
 	downloader := s3manager.NewDownloader(sess,
 		func(d *s3manager.Downloader) { d.PartSize = 64 * 1024 * 1024 },
