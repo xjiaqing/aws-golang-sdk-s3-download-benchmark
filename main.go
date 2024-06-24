@@ -29,7 +29,7 @@ func main() {
 	}
 
 	downloadConcurrrency := runtime.NumCPU() * concurrencyPerCPU
-	sess := session.Must(session.NewSession(&aws.Config{Region: aws.String("us-west-2")}))
+	sess := session.Must(session.NewSession(&aws.Config{Region: aws.String(region)}))
 	downloader := s3manager.NewDownloader(sess,
 		func(d *s3manager.Downloader) { d.PartSize = 64 * 1024 * 1024 },
 		func(d *s3manager.Downloader) { d.Concurrency = downloadConcurrrency },
@@ -43,8 +43,8 @@ func main() {
 
 	start := time.Now()
 	downloadBytes, err := downloader.Download(f, &s3.GetObjectInput{
-		Bucket: aws.String("xjiaqing-tidb-br-test"),
-		Key:    aws.String("test-0329-onefile/1tzero"),
+		Bucket: aws.String(downloadBucket),
+		Key:    aws.String(downloadKey),
 	})
 
 	if err != nil {
